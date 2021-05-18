@@ -1,6 +1,7 @@
 const express = require("express");
-const router = express.Router();
 const Product = require("../models/product");
+
+const router = express.Router();
 
 router.get("/", (req, res, next) => {
   Product.find()
@@ -55,7 +56,7 @@ router.get("/:productId", (req, res, next) => {
 
 router.delete("/:productId", (req, res, next) => {
   const id = req.params.productId;
-  Product.findByIdAndRemove({ _id: id })
+  Product.remove({ _id: id })
     .then((result) => {
       res.status(200).json(result);
     })
