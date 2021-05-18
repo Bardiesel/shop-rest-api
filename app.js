@@ -9,6 +9,7 @@ const orderRoutes = require("./api/routes/orders");
 mongoose.connect("mongodb://localhost:27017/rest-api", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 app.use(express.urlencoded({ extended: false }));
