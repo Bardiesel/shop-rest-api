@@ -12,6 +12,8 @@ mongoose.connect("mongodb://localhost:27017/rest-api", {
   useFindAndModify: false,
 });
 
+app.use("/uploads", express.static("uploads"));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
