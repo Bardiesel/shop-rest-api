@@ -1,9 +1,15 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
 
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
+
+mongoose.connect("mongodb://localhost:27017/rest-api", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
