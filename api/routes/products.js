@@ -1,6 +1,7 @@
 const express = require("express");
 const Product = require("../models/product");
 const multer = require("multer");
+const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -28,7 +29,7 @@ router.get("/", (req, res, next) => {
     });
 });
 
-router.post("/", upload.single("productImage"), (req, res, next) => {
+router.post("/", checkAuth, upload.single("productImage"), (req, res, next) => {
   const product = new Product({
     title: req.body.title,
     price: req.body.price,
@@ -66,7 +67,7 @@ router.get("/:productId", (req, res, next) => {
     });
 });
 
-router.delete("/:productId", (req, res, next) => {
+router.delete("/:productId", checkAuth, (req, res, next) => {
   const id = req.params.productId;
   Product.remove({ _id: id })
     .then((result) => {
